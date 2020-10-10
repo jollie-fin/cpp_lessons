@@ -9,7 +9,7 @@
 				"-g",
 				"${file}",
 				"-o",
-				"${fileDirname}/${fileBasenameNoExtension}",
+				"${fileDirname}/${fileBasenameNoExtension}.out",
 				"-std=gnu++17",
 				"-Os",
 				"-I/usr/include/opencv4/opencv",
