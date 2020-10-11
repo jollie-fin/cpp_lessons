@@ -26,36 +26,36 @@ int distance(int i, int j)
     return -1;
 }
 
-struct Node
+struct Step
 {
     int cumul_distance;
     int from;
     int to;
 
-    bool operator<(const Node &other) const
+    bool operator<(const Step &other) const
     {
         return cumul_distance > other.cumul_distance;
     }
 };
 
-void dijkstra(int max_int, int i, int j)
+void dijkstra(int nb_nodes, int i, int j)
 {
-    assert(i < max_int);
-    assert(j < max_int);
+    assert(i < nb_nodes);
+    assert(j < nb_nodes);
     assert(0 <= i);
     assert(0 <= j);
     
-    std::vector<int> cumul_distances(max_int, std::numeric_limits<int>::max());
-    std::vector<int> from(max_int, -1);
+    std::vector<int> cumul_distances(nb_nodes, std::numeric_limits<int>::max());
+    std::vector<int> from(nb_nodes, -1);
 
     cumul_distances[i] = 0;
 
-    std::priority_queue<Node> pq;
-    pq.push(Node{0, -1, i});
+    std::priority_queue<Step> pq;
+    pq.push(Step{0, -1, i});
 
     while (!pq.empty() && from[j] == -1)
     {
-        Node top = pq.top();
+        Step top = pq.top();
         pq.pop();
 
         if (top.cumul_distance > cumul_distances[top.to])
@@ -66,12 +66,12 @@ void dijkstra(int max_int, int i, int j)
         cumul_distances[top.to] = top.cumul_distance;
 
         // Add all the neighbours
-        for (int k = 0; k < max_int; k++)
+        for (int k = 0; k < nb_nodes; k++)
         {
             int d = distance(k, top.to);
             if (d == -1)
                 continue;
-            pq.push(Node{top.cumul_distance + d, top.to, k});
+            pq.push(Step{top.cumul_distance + d, top.to, k});
         }
     }
 
@@ -89,10 +89,10 @@ void dijkstra(int max_int, int i, int j)
 int main()
 {
     int i, j;
-    int max_int;
-    std::cout << "Max value:" << std::endl;
-    std::cin >> max_int;
+    int nb_nodes;
+    std::cout << "Max value + 1:" << std::endl;
+    std::cin >> nb_nodes;
     std::cout << "Input i and j:" << std::endl;
     std::cin >> i >> j;
-    dijkstra(max_int, i, j);
+    dijkstra(nb_nodes, i, j);
 }
