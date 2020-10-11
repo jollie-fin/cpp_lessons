@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cassert>
 #include <algorithm>
+#include <limits>
 
 /* Dijkstra :
 - Conditions :
@@ -44,7 +45,7 @@ void dijkstra(int max_int, int i, int j)
     assert(0 <= i);
     assert(0 <= j);
     
-    std::vector<int> cumul_distances(max_int, 2000000000);
+    std::vector<int> cumul_distances(max_int, std::numeric_limits<int>::max());
     std::vector<int> from(max_int, -1);
 
     cumul_distances[i] = 0;
