@@ -41,6 +41,7 @@ std::pair<int64_t, int64_t> fibonacci_lin(int64_t n)
 }
 
 /*fibonacci_lin(n) -> Fn+1, Fn*/
+/* recursive terminale */
 double fibonacci_lin_better(int64_t n, double next = 1, double prev = 1)
 {
     if (n <= 0)
