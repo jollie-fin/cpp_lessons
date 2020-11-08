@@ -85,7 +85,7 @@ void propagate(std::vector<int> &best, uint32_t board, int value)
         if (best[neigh] > value)
             best[neigh] = value;
     }
-    for (int pos = 0; pos < 3; pos++)
+    for (int pos = 0; pos < 4; pos++)
     {
         uint32_t neigh;
         neigh = flip_col(board, pos);
@@ -109,7 +109,7 @@ std::vector<int> neighbours(uint32_t board)
     for (int pos = 0; pos < 16; pos++)
         retval.emplace_back(flip(board, pos));
 
-    for (int pos = 0; pos < 3; pos++)
+    for (int pos = 0; pos < 4; pos++)
     {
         retval.emplace_back(flip_col(board, pos));
         retval.emplace_back(flip_row(board, pos));
